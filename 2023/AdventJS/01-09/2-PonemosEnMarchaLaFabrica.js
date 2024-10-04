@@ -4,8 +4,8 @@
 
 // Un regalo se puede fabricar si contamos con todos los materiales necesarios para fabricarlo.
 
-const gifts = ['tren', 'oso', 'pelota']
-const materials = 'tronesa'
+const gifts = ["tren", "oso", "pelota"];
+const materials = "tronesa";
 
 // manufacture(gifts, materials) // ["tren", "oso"]
 // // 'tren' SÍ porque sus letras están en 'tronesa'
@@ -23,34 +23,34 @@ const materials = 'tronesa'
 // manufacture(gifts, materials) // []
 
 function manufacture(gifts, materials) {
-  const giftsArray = gifts.map(gift => gift.split(''))
-  const materialsArray = materials.split('')
+	const giftsArray = gifts.map((gift) => gift.split(""));
+	const materialsArray = materials.split("");
 
-  const result = giftsArray.map(gift => {
-    const giftCopy = [...gift]
-    const giftMaterials = giftCopy.filter(letter => {
-      const index = materialsArray.indexOf(letter)
-      if (index !== -1) {
-        return true
-      }
-      return false
-    })
-    if (giftMaterials.length === gift.length) {
-      return gift.join('')
-    }
-  })
+	const result = giftsArray.map((gift) => {
+		const giftCopy = [...gift];
+		const giftMaterials = giftCopy.filter((letter) => {
+			const index = materialsArray.indexOf(letter);
+			if (index !== -1) {
+				return true;
+			}
+			return false;
+		});
+		if (giftMaterials.length === gift.length) {
+			return gift.join("");
+		}
+	});
 
-  return result.filter(gift => gift)
+	return result.filter((gift) => gift);
 }
 
-console.log(manufacture(gifts, materials))
+console.log(manufacture(gifts, materials));
 
 function manufacture2(gifts, materials) {
-  return gifts.filter(gift => {
-    return gift.split('').every(letter => {
-      return materials.includes(letter)
-    })
-  })
+	return gifts.filter((gift) => {
+		return gift.split("").every((letter) => {
+			return materials.includes(letter);
+		});
+	});
 }
 
-export default manufacture
+export default manufacture;

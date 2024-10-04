@@ -18,27 +18,27 @@
 // Si se puede formar el palíndromo con diferentes intercambios, siempre se debe devolver el primero que se encuentre.
 
 function getIndexsForPalindrome(word: string) {
-  function checkPalindrome(word: string): boolean {
-    return word === word.split('').reverse().join('')
-  }
+	function checkPalindrome(word: string): boolean {
+		return word === word.split("").reverse().join("");
+	}
 
-  if (checkPalindrome(word)) {
-    return []
-  }
+	if (checkPalindrome(word)) {
+		return [];
+	}
 
-  for (let start = 0; start < word.length; start++) {
-    for (let end = 0; end < word.length; end++) {
-      const wordDestructed:string[] = word.split('')
+	for (let start = 0; start < word.length; start++) {
+		for (let end = 0; end < word.length; end++) {
+			const wordDestructed: string[] = word.split("");
 
-      const temp = wordDestructed[start]
-      wordDestructed[start] = wordDestructed[end]
-      wordDestructed[end] = temp
-      if (checkPalindrome(wordDestructed.join(''))) {
-        return [start, end]
-      }
-    }
-  }
-  return null
+			const temp = wordDestructed[start];
+			wordDestructed[start] = wordDestructed[end];
+			wordDestructed[end] = temp;
+			if (checkPalindrome(wordDestructed.join(""))) {
+				return [start, end];
+			}
+		}
+	}
+	return null;
 }
 
-export { getIndexsForPalindrome }
+export { getIndexsForPalindrome };

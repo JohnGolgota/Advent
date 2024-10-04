@@ -23,15 +23,15 @@
 // ¡Ojo! Los elfos dicen que esto es una prueba técnica de Google.
 
 function findFirstRepeated(gifts) {
-    let map = []
-    for (const gift of gifts) {
-        if (map.includes(gift)) {
-            return gift
-        }
-        map.push(gift)
-    }
-    return -1
-    // Iterar sobre el array y... ahí vemos xq
+	const map = [];
+	for (const gift of gifts) {
+		if (map.includes(gift)) {
+			return gift;
+		}
+		map.push(gift);
+	}
+	return -1;
+	// Iterar sobre el array y... ahí vemos xq
 }
 
-export default findFirstRepeated
+export default findFirstRepeated;

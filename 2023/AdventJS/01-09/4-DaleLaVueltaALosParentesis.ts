@@ -10,11 +10,11 @@
 // const b = decode('(olleh) (dlrow)!')
 // console.log(b) // hello world!
 
-const c = decode('sa(u(cla)atn)s')
-console.log(c) // santaclaus
+const c = decode("sa(u(cla)atn)s");
+console.log(c); // santaclaus
 
-const d = decode('s(u(l3 al)c(a)tn)(as)')
-console.log(d) // santaclaus
+const d = decode("s(u(l3 al)c(a)tn)(as)");
+console.log(d); // santaclaus
 
 // Paso a paso:
 // 1. Invertimos el anidado -> sa(ualcatn)s
@@ -26,16 +26,16 @@ console.log(d) // santaclaus
 // El nivel máximo de anidamiento es 2.
 
 function decode(message: string) {
-  const match = message.match(/\(([^()]+)\)/g)
-  if (!match) {
-    return message
-  }
-  match.map(m => {
-    const sanitized = m.split('').reverse().join('').replace(/\(|\)/g, '')
-    message = message.replace(m, sanitized)
-  })
-  message = decode(message)
-  return message
+	const match = message.match(/\(([^()]+)\)/g);
+	if (!match) {
+		return message;
+	}
+	match.map((m) => {
+		const sanitized = m.split("").reverse().join("").replace(/\(|\)/g, "");
+		message = message.replace(m, sanitized);
+	});
+	message = decode(message);
+	return message;
 }
 // function decode(message) {
 //   // Detectar (
@@ -55,7 +55,6 @@ function decode(message: string) {
 //   }
 //   // const innerOpenIndex = decode(presviousOpenIndex.join(''))
 //   // console.log("innerOpenIndex:", innerOpenIndex)
-
 
 //   // return presviousOpenIndex
 // }

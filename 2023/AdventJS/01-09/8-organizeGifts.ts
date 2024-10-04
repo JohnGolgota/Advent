@@ -11,8 +11,8 @@
 
 // Tu tarea es escribir una función organizeGifts que tome una cadena de regalos como argumento y devuelva una cadena representando el almacén.
 
-const result1 = organizeGifts(`70b120a4c`)
-console.log(result1)
+const result1 = organizeGifts(`70b120a4c`);
+console.log(result1);
 // '[a]{a}{a}(aaaaaa){b}(b)'
 
 /* Explicación:
@@ -22,33 +22,32 @@ console.log(result1)
   11b: 11 regalos tipo 'b' se empaquetarían en 1 caja y sobraría 1 regalo, resultando en 1 caja suelta {b} y una bolsa con 1 regalo (b)
   */
 
-function organizeGifts(gifts:string) {
-  let res = '';
-  const matches = gifts.match(/(\d+)([a-z])/g) || [];
-  if(!matches.length) return gifts;
-  // console.log("matches:", matches)
+function organizeGifts(gifts: string) {
+	let res = "";
+	const matches = gifts.match(/(\d+)([a-z])/g) || [];
+	if (!matches.length) return gifts;
+	// console.log("matches:", matches)
 
-  for(let match of matches) {
-    const [_, qty, type] = match.match(/(\d+)([a-z])/);
-    // console.log("qty:", qty)
-    // console.log("type:", type)
+	for (const match of matches) {
+		const [_, qty, type] = match.match(/(\d+)([a-z])/);
+		// console.log("qty:", qty)
+		// console.log("type:", type)
 
-    const pallets = Math.floor(qty / 50);
-    // console.log("pallets:", pallets)
-    const boxes = Math.floor((qty % 50) / 10);
-    // console.log("boxes:", boxes)
-    const bags = Math.floor((qty % 50) % 10);
-    // console.log("bags:", bags)
-    let bag = bags < 10 && bags != 0 ? 1 : 0;
-    // console.log("bag:", bag)
-    const left = qty - (pallets * 50) - (boxes * 10);
-    // console.log("left:", left)
+		const pallets = Math.floor(qty / 50);
+		// console.log("pallets:", pallets)
+		const boxes = Math.floor((qty % 50) / 10);
+		// console.log("boxes:", boxes)
+		const bags = Math.floor((qty % 50) % 10);
+		// console.log("bags:", bags)
+		const bag = bags < 10 && bags != 0 ? 1 : 0;
+		// console.log("bag:", bag)
+		const left = qty - pallets * 50 - boxes * 10;
+		// console.log("left:", left)
 
-    res += `[${type}]`.repeat(pallets)
-    res += `{${type}}`.repeat(boxes)
-    res += `(${type.repeat(left)})`.repeat(bag);
-  }
+		res += `[${type}]`.repeat(pallets);
+		res += `{${type}}`.repeat(boxes);
+		res += `(${type.repeat(left)})`.repeat(bag);
+	}
 
-
-  return res;
+	return res;
 }
