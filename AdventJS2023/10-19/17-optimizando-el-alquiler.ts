@@ -1,8 +1,22 @@
 function optimizeIntervals(intervals) {
-  return []
+	intervals.sort((a, b) => a[0] - b[0]);
+	const res = [intervals[0]];
+
+	for (let i = 0; i < intervals.length; i++) {
+		const [s, e] = intervals[i];
+		const lastInterval = res[res.length - 1];
+
+		if (s <= lastInterval[1]) {
+			lastInterval[1] = Math.max(lastInterval[1], e);
+		} else {
+			res.push(intervals[i]);
+		}
+	}
+
+	return res;
 }
 
-export { optimizeIntervals }
+export { optimizeIntervals };
 
 // En Rovaniemi, Finlandia 🇫🇮, los trineos 🛷 se alquilan por intervalos de tiempo. Cada intervalo se representa como un array de dos elementos, donde el primer elemento es el inicio del alquiler y el segundo es el final.
 
